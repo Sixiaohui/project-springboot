@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 村务项目映射文件 -->
+<mapper namespace="com.codeying.mapper.ProjMapper">
+
+    <!--查询-->
+    <select id="sqlSelectList" resultType="com.codeying.entity.Proj">
+        select * from tb_Proj t
+        <where>
+            <if test="vo!=null and vo.cunid != null and vo.cunid != ''">
+                t.cunid like CONCAT('%',#{ vo.cunid },'%');
+            </if>
+            <if test="vo!=null and vo.name != null and vo.name != ''">
+                t.name like CONCAT('%',#{ vo.name },'%');
+            </if>
+            <if test="vo!=null and vo.status != null and vo.status != ''">
+                t.status like CONCAT('%',#{ vo.status },'%');
+            </if>
+        </where>
+    </select>
+
+    <delete id="sqlDelete">
+        delete from tb_Proj where id = #{id}
+    </delete>
+    
+    <update id="sqlUpdate">
+        update tb_Proj
+        set id=#{id}  ,cunid=#{cunid}  ,name=#{name}  ,lixiang=#{lixiang}  ,jinzhan=#{jinzhan}  ,remark=#{remark}  ,jingfei=#{jingfei}  ,status=#{status}  ,kais=#{kais}  ,jies=#{jies} 
+        where id= #{id}
+    </update>
+
+    <insert id="sqlSave">
+        insert into tb_Proj values(
+        #{id}, ,#{cunid}  ,#{name}  ,#{lixiang}  ,#{jinzhan}  ,#{remark}  ,#{jingfei}  ,#{status}  ,#{kais}  ,#{jies} 
+        )
+    </insert>
+
+</mapper>
+

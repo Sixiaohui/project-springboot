@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 村干部映射文件 -->
+<mapper namespace="com.codeying.mapper.GanbuMapper">
+
+    <!--查询-->
+    <select id="sqlSelectList" resultType="com.codeying.entity.Ganbu">
+        select * from tb_Ganbu t
+        <where>
+            <if test="vo!=null and vo.username != null and vo.username != ''">
+                t.username like CONCAT('%',#{ vo.username },'%');
+            </if>
+            <if test="vo!=null and vo.name != null and vo.name != ''">
+                t.name like CONCAT('%',#{ vo.name },'%');
+            </if>
+            <if test="vo!=null and vo.gender != null and vo.gender != ''">
+                t.gender like CONCAT('%',#{ vo.gender },'%');
+            </if>
+        </where>
+    </select>
+
+    <delete id="sqlDelete">
+        delete from tb_Ganbu where id = #{id}
+    </delete>
+    
+    <update id="sqlUpdate">
+        update tb_Ganbu
+        set id=#{id}  ,username=#{username}  ,password=#{password}  ,name=#{name}  ,gender=#{gender}  ,tele=#{tele}  ,age=#{age}  ,zhic=#{zhic}  ,describtion=#{describtion} 
+        where id= #{id}
+    </update>
+
+    <insert id="sqlSave">
+        insert into tb_Ganbu values(
+        #{id}, ,#{username}  ,#{password}  ,#{name}  ,#{gender}  ,#{tele}  ,#{age}  ,#{zhic}  ,#{describtion} 
+        )
+    </insert>
+
+</mapper>
+

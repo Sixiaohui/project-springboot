@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 网格映射文件 -->
+<mapper namespace="com.codeying.mapper.WanggeMapper">
+
+    <!--查询-->
+    <select id="sqlSelectList" resultType="com.codeying.entity.Wangge">
+        select * from tb_Wangge t
+        <where>
+            <if test="vo!=null and vo.name != null and vo.name != ''">
+                t.name like CONCAT('%',#{ vo.name },'%');
+            </if>
+            <if test="vo!=null and vo.fuzeid != null and vo.fuzeid != ''">
+                t.fuzeid like CONCAT('%',#{ vo.fuzeid },'%');
+            </if>
+        </where>
+    </select>
+
+    <delete id="sqlDelete">
+        delete from tb_Wangge where id = #{id}
+    </delete>
+    
+    <update id="sqlUpdate">
+        update tb_Wangge
+        set id=#{id}  ,name=#{name}  ,numb=#{numb}  ,quyu=#{quyu}  ,fuzeid=#{fuzeid}  ,liyong=#{liyong} 
+        where id= #{id}
+    </update>
+
+    <insert id="sqlSave">
+        insert into tb_Wangge values(
+        #{id}, ,#{name}  ,#{numb}  ,#{quyu}  ,#{fuzeid}  ,#{liyong} 
+        )
+    </insert>
+
+</mapper>
+

@@ -1,0 +1,100 @@
+/*模态框*/
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed; /* 根据浏览器定位 */
+    z-index: 1999; /* 放在顶部 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 全宽 */
+    height: 100%; /* 全高 */
+    overflow: auto; /* 允许滚动 */
+    background-color: rgba(0,0,0,0.4); /* 背景色 */
+}
+/*模态框内容*/
+.modal .modal-content {
+    display: flex; /*采用flexbox布局*/
+    flex-direction: column; /*垂直排列*/
+    position: relative;
+    background-color: #fefefe;
+    margin: 15% auto; /*距顶部15% 水平居中*/
+    padding: 10px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 1000px;
+    animation: topDown 0.4s; /*自定义动画，从模态框内容上到下出现*/
+}
+@keyframes topDown {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+/*模态框头部*/
+.modal .modal-header {
+    /*display: flex; !*采用flexbox布局*!*/
+    /*flex-direction: row; !*水平布局*!*/
+    align-items: center; /*内容垂直居中*/
+    /*justify-content: space-between!important;*/
+}
+/*关闭X 样式*/
+.modal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.modal .close:hover {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-table td{
+    border: 1px solid;
+    padding: 3px;
+}
+
+/*评论区*/
+.comments{
+    color: black;
+    width: 100%;
+    box-shadow:0 0 6px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    background-color: white;
+}
+.comment{
+    box-sizing: border-box;
+    padding: 10px 10px 0 20px;
+    border-bottom: #afb6b3 1px solid;
+}
+.comment:hover{
+    background-color: #e1e1e1;
+}
+.comment-head{
+    height: 40px;
+}
+.comment-head .time{
+    color: #afb6b3;
+}
+.comment-head img{
+    width: 30px;
+    height: 30px;
+}
+.comment-body{
+    margin-left: 35px;
+}
+.comment-body button{
+    background-color: #0FB25F;
+    border: none;
+    color: white;
+    margin-bottom: 10px;
+}
+.comment-body textarea{
+    width: 75%;
+    height: 50px;
+}
+
+/*评论区*/
+
+
+/*下拉框背景白色问题*/
+[data-theme='translucent'] .form-control{
+    color: rgba(0,0,0,.6);
+}

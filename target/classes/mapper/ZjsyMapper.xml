@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 资金使用映射文件 -->
+<mapper namespace="com.codeying.mapper.ZjsyMapper">
+
+    <!--查询-->
+    <select id="sqlSelectList" resultType="com.codeying.entity.Zjsy">
+        select * from tb_Zjsy t
+        <where>
+            <if test="vo!=null and vo.yongtu != null and vo.yongtu != ''">
+                t.yongtu like CONCAT('%',#{ vo.yongtu },'%');
+            </if>
+            <if test="vo!=null and vo.type != null and vo.type != ''">
+                t.type like CONCAT('%',#{ vo.type },'%');
+            </if>
+            <if test="vo!=null and vo.name != null and vo.name != ''">
+                t.name like CONCAT('%',#{ vo.name },'%');
+            </if>
+        </where>
+    </select>
+
+    <delete id="sqlDelete">
+        delete from tb_Zjsy where id = #{id}
+    </delete>
+    
+    <update id="sqlUpdate">
+        update tb_Zjsy
+        set id=#{id}  ,yongtu=#{yongtu}  ,type=#{type}  ,price=#{price}  ,shijian=#{shijian}  ,mingxi=#{mingxi}  ,name=#{name}  ,files=#{files} 
+        where id= #{id}
+    </update>
+
+    <insert id="sqlSave">
+        insert into tb_Zjsy values(
+        #{id}, ,#{yongtu}  ,#{type}  ,#{price}  ,#{shijian}  ,#{mingxi}  ,#{name}  ,#{files} 
+        )
+    </insert>
+
+</mapper>
+

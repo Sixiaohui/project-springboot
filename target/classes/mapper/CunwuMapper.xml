@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 村务信息映射文件 -->
+<mapper namespace="com.codeying.mapper.CunwuMapper">
+
+    <!--查询-->
+    <select id="sqlSelectList" resultType="com.codeying.entity.Cunwu">
+        select * from tb_Cunwu t
+        <where>
+            <if test="vo!=null and vo.name != null and vo.name != ''">
+                t.name like CONCAT('%',#{ vo.name },'%');
+            </if>
+            <if test="vo!=null and vo.type != null and vo.type != ''">
+                t.type like CONCAT('%',#{ vo.type },'%');
+            </if>
+        </where>
+    </select>
+
+    <delete id="sqlDelete">
+        delete from tb_Cunwu where id = #{id}
+    </delete>
+    
+    <update id="sqlUpdate">
+        update tb_Cunwu
+        set id=#{id}  ,name=#{name}  ,type=#{type}  ,wenj=#{wenj}  ,huiyi=#{huiyi}  ,juece=#{juece} 
+        where id= #{id}
+    </update>
+
+    <insert id="sqlSave">
+        insert into tb_Cunwu values(
+        #{id}, ,#{name}  ,#{type}  ,#{wenj}  ,#{huiyi}  ,#{juece} 
+        )
+    </insert>
+
+</mapper>
+

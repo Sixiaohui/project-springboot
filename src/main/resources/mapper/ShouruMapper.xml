@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 经济收入映射文件 -->
+<mapper namespace="com.codeying.mapper.ShouruMapper">
+
+    <!--查询-->
+    <select id="sqlSelectList" resultType="com.codeying.entity.Shouru">
+        select * from tb_Shouru t
+        <where>
+            <if test="vo!=null and vo.cunmid != null and vo.cunmid != ''">
+                t.cunmid like CONCAT('%',#{ vo.cunmid },'%');
+            </if>
+            <if test="vo!=null and vo.year != null and vo.year != ''">
+                t.year like CONCAT('%',#{ vo.year },'%');
+            </if>
+        </where>
+    </select>
+
+    <delete id="sqlDelete">
+        delete from tb_Shouru where id = #{id}
+    </delete>
+    
+    <update id="sqlUpdate">
+        update tb_Shouru
+        set id=#{id}  ,cunmid=#{cunmid}  ,year=#{year}  ,shouru=#{shouru}  ,remark=#{remark} 
+        where id= #{id}
+    </update>
+
+    <insert id="sqlSave">
+        insert into tb_Shouru values(
+        #{id}, ,#{cunmid}  ,#{year}  ,#{shouru}  ,#{remark} 
+        )
+    </insert>
+
+</mapper>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 村土地使用映射文件 -->
+<mapper namespace="com.codeying.mapper.ShiyongMapper">
+
+    <!--查询-->
+    <select id="sqlSelectList" resultType="com.codeying.entity.Shiyong">
+        select * from tb_Shiyong t
+        <where>
+            <if test="vo!=null and vo.wgid != null and vo.wgid != ''">
+                t.wgid like CONCAT('%',#{ vo.wgid },'%');
+            </if>
+        </where>
+    </select>
+
+    <delete id="sqlDelete">
+        delete from tb_Shiyong where id = #{id}
+    </delete>
+    
+    <update id="sqlUpdate">
+        update tb_Shiyong
+        set id=#{id}  ,wgid=#{wgid}  ,place=#{place}  ,reason=#{reason}  ,type=#{type}  ,createtime=#{createtime} 
+        where id= #{id}
+    </update>
+
+    <insert id="sqlSave">
+        insert into tb_Shiyong values(
+        #{id}, ,#{wgid}  ,#{place}  ,#{reason}  ,#{type}  ,#{createtime} 
+        )
+    </insert>
+
+</mapper>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 投诉建议映射文件 -->
+<mapper namespace="com.codeying.mapper.TousuMapper">
+
+    <!--查询-->
+    <select id="sqlSelectList" resultType="com.codeying.entity.Tousu">
+        select * from tb_Tousu t
+        <where>
+            <if test="vo!=null and vo.useird != null and vo.useird != ''">
+                t.useird like CONCAT('%',#{ vo.useird },'%');
+            </if>
+        </where>
+    </select>
+
+    <delete id="sqlDelete">
+        delete from tb_Tousu where id = #{id}
+    </delete>
+    
+    <update id="sqlUpdate">
+        update tb_Tousu
+        set id=#{id}  ,useird=#{useird}  ,jianjie=#{jianjie}  ,createtime=#{createtime}  ,huifu=#{huifu} 
+        where id= #{id}
+    </update>
+
+    <insert id="sqlSave">
+        insert into tb_Tousu values(
+        #{id}, ,#{useird}  ,#{jianjie}  ,#{createtime}  ,#{huifu} 
+        )
+    </insert>
+
+</mapper>
+
